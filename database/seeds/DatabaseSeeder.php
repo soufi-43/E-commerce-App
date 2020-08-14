@@ -5,6 +5,8 @@ use App\Category;
 use App\Image;
 use App\Product;
 use App\Review;
+use App\Tag;
+use App\Ticket;
 use App\User;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
@@ -20,10 +22,13 @@ class DatabaseSeeder extends Seeder
     {
 //        factory(Address::class,1000)->create();
 //        factory(User::class,500)->create();
-        factory(Product::class,1500)->create();
+        //factory(Product::class,1500)->create();
 //        factory(Image::class,3500)->create();
 //        factory(Review::class,3500)->create();
-        factory(Category::class,50)->create();
+        //factory(Category::class,50)->create();
+        //factory(Tag::class,150)->create();
+        factory(Ticket::class,150)->create();
+
 
 
 
