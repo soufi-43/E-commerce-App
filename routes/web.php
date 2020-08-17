@@ -65,6 +65,8 @@ Route::group(['auth','user_is_admin'], function(){
     Route::post('units','UnitController@store');
     Route::delete('units','UnitController@delete');
     Route::put('units','UnitController@update');
+    Route::post('search-units','UnitController@search')->name('search-units');
+
 
 
 
@@ -77,6 +79,8 @@ Route::group(['auth','user_is_admin'], function(){
 
     //tags
     Route::get('tags','TagController@index')->name('tags');
+    Route::post('tags','TagController@store');
+
 
     //countries
     Route::get('countries','CountryController@index')->name('countries');

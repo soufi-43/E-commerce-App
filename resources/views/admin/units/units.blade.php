@@ -55,7 +55,20 @@
 
                             @endforeach
 
-                            {{$units->links()}}
+                            {{ (!is_null($tagsshowLinks)&&$showLinks) ? $units->links():''}}
+
+                                <form action="{{route('search-units')}}" method="post">
+                                    <div class="row">
+                                    @csrf
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" name="unit_search" id="unit_search"
+                                               placeholder="Search Unit" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                    </div>
+                                </form>
 
                         </div>
 
