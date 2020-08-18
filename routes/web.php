@@ -72,7 +72,12 @@ Route::group(['auth','user_is_admin'], function(){
 
 
     //categories
-    Route::get('categories','CategoryController@index')->name('categories');
+    Route::get('categories','CategoryController@index')->name('categories') ;
+    Route::post('categories','CategoryController@store');
+    Route::delete('categories','CategoryController@delete');
+    Route::put('categories','CategoryController@update');
+    Route::get('search-categories','CategoryController@search')->name('search-categories');
+
 
     //products
     Route::get('products','ProductController@index')->name('products');
