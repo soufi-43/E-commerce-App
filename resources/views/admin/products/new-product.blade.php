@@ -14,7 +14,7 @@
 
                     <div class="card-body">
 
-                        <form action="{{route('update-product')}}" method="post" class="row">
+                        <form action="{{(!is_null($product))?route('update-product'):route('new-product')}}" method="post" class="row">
                             @csrf
 
                             @if(!is_null($product))
@@ -112,8 +112,10 @@
 
                             </div>
 
+                            <div class="form-group col-md-6 offset-md-3">
+                                <button type="submit" class="btn btn-primary btn-block">Save</button>
 
-                            <button type="submit">test</button>
+                            </div>
                         </form>
 
                     </div>
@@ -227,10 +229,12 @@
 
     <script>
         $(document).ready(function () {
+            var optionNamesList=[];
             var $optionWindow = $('#options-window');
             var $addOptionBtn = $('.add-option-btn');
 
             var $optionsTable = $('#options-table');
+            var optionNamesRow = '';
 
             $addOptionBtn.on('click', function (e) {
                 e.preventDefault();
@@ -251,6 +255,14 @@
                     return false;
 
                 }
+
+                if(!optionNamesList.includes($optionName.val())){
+                    optionNamesList.push($optionName.val());
+                    optionNamesRow='<td><input type="hidden" name="options[]" value="'+$optionName.val()+'"></td>'
+                }
+
+
+
                 var $optionValue = $('#option_value');
                 if ($optionValue === '') {
                     alert('option val is required');
@@ -281,6 +293,9 @@
 
                                `;
                 $optionsTable.append(optionRow);
+                $optionsTable.append(optionNamesRow);
+
+
 
                 $optionValue.val('');
 
