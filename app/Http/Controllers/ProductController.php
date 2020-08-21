@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Image;
 use App\Product;
 use App\Unit;
 use Illuminate\Http\Request;
@@ -86,6 +87,18 @@ class ProductController extends Controller
         }
 
         $product->save();
+
+        if ($request->hasFile('product_images')) {
+            $images = $request->file('product_images');
+
+            foreach ($images as $image) {
+                $path = $image->store('public');
+                $image = new Image();
+                $image->url = $path;
+                $image->product_id = $product->id;
+                $image->save();
+            }
+        }
         Session::flash('message', 'product has been added');
         return redirect(route('products'));
 

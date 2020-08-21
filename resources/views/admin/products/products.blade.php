@@ -24,37 +24,41 @@
                                             @foreach($product->jsonOptions() as $key=>$values)
                                                 <div class="row">
                                                     <div class="form-group col-md-12">
-                                                        <label for="{{$key}}" >{{$key}}</label>
-                                                        <select type="text" class="form-control" id="{{$key}}" name="{{$key}}">
+                                                        <label for="{{$key}}">{{$key}}</label>
+                                                        <select type="text" class="form-control" id="{{$key}}"
+                                                                name="{{$key}}">
                                                             @foreach($values as $value)
                                                                 <option value="{{$value}}">{{$value}}</option>
 
-                                                                @endforeach
+                                                            @endforeach
 
                                                         </select>
                                                     </div>
 
 
                                                 </div>
-                                                @endforeach
-                                            @endif
+                                            @endforeach
+                                        @endif
 
 
-{{--                                        @if(!is_null($product))--}}
-{{--                                            <table id="options-table" class="table table-striped">--}}
-{{--                                            @if(!is_null($product->jsonOptions()))--}}
-{{--                                                @foreach($product->jsonOptions() as $optionName=>$options)--}}
-{{--                                                    @foreach($options as $option)--}}
-{{--                                                        <tr>--}}
-{{--                                                            <td>{{$optionName}}</td>--}}
-{{--                                                            <td>{{$option}}</td>--}}
 
-{{--                                                        </tr>--}}
-{{--                                                    @endforeach--}}
-{{--                                                @endforeach--}}
-{{--                                            </table>--}}
-{{--                                            @endif--}}
-{{--                                        @endif--}}
+
+
+                                        {{--                                        @if(!is_null($product))--}}
+                                        {{--                                            <table id="options-table" class="table table-striped">--}}
+                                        {{--                                            @if(!is_null($product->jsonOptions()))--}}
+                                        {{--                                                @foreach($product->jsonOptions() as $optionName=>$options)--}}
+                                        {{--                                                    @foreach($options as $option)--}}
+                                        {{--                                                        <tr>--}}
+                                        {{--                                                            <td>{{$optionName}}</td>--}}
+                                        {{--                                                            <td>{{$option}}</td>--}}
+
+                                        {{--                                                        </tr>--}}
+                                        {{--                                                    @endforeach--}}
+                                        {{--                                                @endforeach--}}
+                                        {{--                                            </table>--}}
+                                        {{--                                            @endif--}}
+                                        {{--                                        @endif--}}
 
 
                                         <a class="btn btn-success mt-2"
