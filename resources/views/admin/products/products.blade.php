@@ -18,7 +18,7 @@
                                         <p>Category
                                             : {{ (is_object($product->category)) ? $product->category->name :''}}</p>
                                         <p>Price : {{$currency_code}}{{$product->price}}</p>
-                                        {!! (count($product->images)>0) ? '<img class="img-thumbnail card-img" src="'.$product->images[0]->url.'"/>' : ""  !!}
+                                        {!! (count($product->images)>0) ? '<img class="img-thumbnail card-img" src="'.asset($product->images[0]->url).'"/>' : ""  !!}
 
                                         @if(!is_null($product->options))
                                             @foreach($product->jsonOptions() as $key=>$values)
@@ -44,25 +44,10 @@
 
 
 
-                                        {{--                                        @if(!is_null($product))--}}
-                                        {{--                                            <table id="options-table" class="table table-striped">--}}
-                                        {{--                                            @if(!is_null($product->jsonOptions()))--}}
-                                        {{--                                                @foreach($product->jsonOptions() as $optionName=>$options)--}}
-                                        {{--                                                    @foreach($options as $option)--}}
-                                        {{--                                                        <tr>--}}
-                                        {{--                                                            <td>{{$optionName}}</td>--}}
-                                        {{--                                                            <td>{{$option}}</td>--}}
-
-                                        {{--                                                        </tr>--}}
-                                        {{--                                                    @endforeach--}}
-                                        {{--                                                @endforeach--}}
-                                        {{--                                            </table>--}}
-                                        {{--                                            @endif--}}
-                                        {{--                                        @endif--}}
 
 
                                         <a class="btn btn-success mt-2"
-                                           href="{{route('update-product',['id'=>$product->id])}}">Update Product</a>
+                                           href="{{route('update-product-form',['id'=>$product->id])}}">Update Product</a>
                                     </div>
                                 </div>
 
