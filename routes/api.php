@@ -34,6 +34,11 @@ Route::get('countries','Api\CountryController@index');
 Route::get('countries/{id}/states','Api\CountryController@showStates');//show cities under countries
 Route::get('countries/{id}/cities','Api\CountryController@showCities');//show cities under countries
 
+
+Route::post('auth/register','Api\AuthController@register');
+Route::post('auth/login','Api\AuthController@login');
+
+
 Route::get('users',function (){
    return UserFullResource::collection(User::paginate());
 });
