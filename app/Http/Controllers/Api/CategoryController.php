@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
     public function index(){
-        return CategoryResource::collection(Category::paginate(5));
+        return CategoryResource::collection(Category::paginate(15));
 
     }
     public function show($id){

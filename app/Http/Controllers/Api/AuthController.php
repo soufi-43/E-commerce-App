@@ -57,10 +57,12 @@ class AuthController extends Controller
             return new UserApiResource($user);
 
         }
-        return [
+        $message =  [
             'error'=>true,
             'message'=>'User Login attempt failed',
         ];
+
+        return response($message,401);
 
     }
 }

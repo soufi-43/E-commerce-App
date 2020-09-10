@@ -12,16 +12,16 @@ use App\Http\Controllers\Controller;
 class CountryController extends Controller
 {
     public function index(){
-        return CountryResource::collection(Country::paginate());
+        return CountryResource::collection(Country::paginate(10));
 
     }
     public function showStates($id){
         $country = Country::find($id);
-        return StateResource::collection($country->states);
+        return StateResource::collection($country->states()->paginate());
     }
     public function showCities($id){
         $country = Country::find($id);
-        return CityResource::collection($country->cities);
+        return CityResource::collection($country->cities()->paginate());
     }
 }
 
