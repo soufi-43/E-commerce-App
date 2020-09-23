@@ -18,7 +18,7 @@ class CategoryController extends Controller
         return new CategoryResource(Category::find($id));
     }
     public function products($id){
-       $category = Category::find($id)  ;
+       $category = Category::findOrfail($id)  ;
        return ProductResource::collection($category->products()->paginate());
     }
 
