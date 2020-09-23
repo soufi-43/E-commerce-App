@@ -8,7 +8,7 @@
                     <div class="card-header">Categories</div>
 
                     <div class="card-body">
-                        <form action="{{route('categories')}}" method="post" class="row">
+                        <form action="{{route('categories')}}" method="post" class="row" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col-md-6">
 
@@ -18,8 +18,36 @@
 
 
                             </div>
+                            <div class="form-group col-md-6">
+
+                                <label for="category_image">category Image</label>
+                                <input type="file" class="form-control-file" name="category_image" id="category_image"
+                                       required>
+
+
+                            </div>
+                            <div class="form-group col-md-6">
+
+
+                                <label for="category_name">Image Direction</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="image_direction" id="exampleRadios1" value="left" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        left
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="image_direction" id="exampleRadios2" value="right">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        right
+                                    </label>
+
+
+
+                                </div>
                             <div class="form-group col-md-12">
                                 <button type="submit" class="btn btn-primary">Save New Category</button>
+                            </div>
                             </div>
 
 
@@ -127,9 +155,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{route('categories')}}" method="post" >
+                <form action="{{route('categories')}}" method="post"  >
 
-                    <div class="modal-body">
+                    <div class="modal-body" >
                         @csrf
                         <p id="delete-message"></p>
                     </div>
@@ -140,7 +168,10 @@
                         <input type="text" class="form-control" name="category_name" id="edit_category_name"
                                placeholder="Cat Name" required>
 
+
                     </div>
+
+
 
 
                     <input type="hidden" name="_method" value="put">

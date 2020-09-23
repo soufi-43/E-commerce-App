@@ -34,7 +34,9 @@ class CategoryController extends Controller
     {
 
         $request->validate([
-            'category_name'=>'required'
+            'category_name'=>'required',
+             'category_image'=>'required',
+            'image_direction'=>'required',
         ]);
         $categoryName = $request->input('category_name');
         if($this->categoryNameExists($categoryName)){
@@ -44,6 +46,12 @@ class CategoryController extends Controller
         }
         $category = new Category();
         $category->name = $categoryName ;
+        $category->image_direction = $request->input('image_direction');
+        if($request->hasFile('category_image')){
+            $image = $request->file('category_image');
+            $path = $image->store('public');
+            $category->image_url = $path ;
+        }
         $category->save();
         Session::flash('message','category added');
         return back();
@@ -87,6 +95,7 @@ class CategoryController extends Controller
         $request->validate([
             'category_id'=>'required',
             'category_name'=>'required',
+
         ]);
 
         $catname = $request->input('category_name');
