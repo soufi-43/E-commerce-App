@@ -41,10 +41,16 @@ Route::post('auth/register','Api\AuthController@register');
 Route::post('auth/login','Api\AuthController@login');
 
 
+
+
+
+
 Route::get('users',function (){
    return UserFullResource::collection(User::paginate());
 });
 
 
-Route::middleware('auth:api')->get('/', function (Request $request) {
+Route::middleware('auth:api')->group( function () {
+    Route::post('carts','Api\CartController@addProductToCart');
+
 });
