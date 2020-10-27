@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Cart extends Model
 {
     protected $fillable = [
-        'cart_items', 'total','user_id',
+        'cart_items', 'total', 'user_id',
     ];
 
     public function user()
@@ -32,9 +33,26 @@ class Cart extends Model
         }
         return
 
-           $this->cart_items;
+            $this->cart_items;
 
 
+    }
+
+    public function getQty($id)
+    {
+
+        $user = Auth::user();
+        $cart = $user->cart;
+        $cartItemss = $cart->cart_items;
+        $cartItems = json_decode($cartItemss);
+        return $cartItems;
+        foreach ($cartItems as $cartItem) {
+            if ($cartItem->product->id === $id) {
+                return $cartItem->qty;
+            }else{
+                return [''];
+            }
+        }
     }
 
 
@@ -68,6 +86,40 @@ class Cart extends Model
 
 
     }
+    public function decreaseProductInCart(Product $product, $qty = 1)
+    {
+        $cartItems = $this->cart_items;
+        if (is_null($cartItems)) {
+            $cartItems = [];
+
+
+        } else {
+            if (!is_array($cartItems)) {
+                $cartItems = json_decode($cartItems);
+
+            }
+        }
+        /**
+         * @var $cartItem CartItem
+         */
+        foreach ($cartItems as $cartItem) {
+            if ($cartItem->product->id === $product->id) {
+                $cartItem->qty -= $qty;
+            }
+        }
+        $this->cart_items = json_encode($cartItems);
+        $tempTotal = 0;
+        foreach ($cartItems as $cartItem) {
+            $tempTotal += ($cartItem->qty * $cartItem->product->price);
+        }
+        $this->total = $tempTotal;
+
+
+    }
+
+
+
+
 
 
     public function addProductToCart(Product $product, $qty = 1)
@@ -97,19 +149,26 @@ class Cart extends Model
         $this->total = $tempTotal;
 
     }
+
+
     public function inItems($product_id)
     {
         // to do : check if the product in items
 
         $cartItems = $this->cart_items;
-
         if (is_null($cartItems)) {
             $cartItems = [];
 
 
+
         } else {
+
             if (!is_array($cartItems)) {
+
+
+
                 $cartItems = json_decode($cartItems);
+
             }
 
         }
@@ -118,8 +177,16 @@ class Cart extends Model
          * @var $cartItem CartItem
          */
 
+
+
+
         foreach ($cartItems as $cartItem) {
-            if ($product_id == $cartItem->product->id) {
+
+
+
+            if ( $cartItem->product->id==$product_id) {
+
+
                 $returnResults = true;
             }
 

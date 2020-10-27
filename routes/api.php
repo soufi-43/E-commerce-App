@@ -52,5 +52,8 @@ Route::get('users',function (){
 
 Route::middleware('auth:api')->group( function () {
     Route::post('carts','Api\CartController@addProductToCart');
+    Route::post('carts/{id}/remove','Api\CartController@removeProductFromCart');
+
+    Route::get('carts','Api\CartController@index');
 
 });

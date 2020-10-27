@@ -14,7 +14,12 @@ class CategoryResource extends JsonResource
      */
     public function toArray($request)
     {
-        return ['category_id'=>$this->id,
+
+
+
+
+        return [
+                'category_id'=>$this->id,
             'category_name'=>$this->name,
             'image_direction'=>$this->image_direction,
             'image_url'=>$this->image_url,

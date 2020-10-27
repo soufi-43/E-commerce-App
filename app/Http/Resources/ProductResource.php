@@ -28,7 +28,7 @@ class ProductResource extends JsonResource
             'product_reviews'=>ReviewResource::collection($this->reviews),
 
 
-            'product_options'=>$this->jsonOptions(),
+           // 'product_options'=>$this->jsonOptions(),
         ];
     }
 }
